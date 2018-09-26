@@ -1,0 +1,5 @@
+Tension POR,10000.0
+Tension TR,50000.0
+Max Roll Force,1000.0
+Max Speed,600
+Work Roll Dia,68.0

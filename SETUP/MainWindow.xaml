@@ -1,0 +1,168 @@
+﻿<Window x:Class="SETUP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SETUP"
+        mc:Ignorable="d"
+        Title="Set-Up Model For Z-Mill" Height="730" Width="750" ResizeMode="NoResize" >
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF4B5151"/>
+                <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFBDBDBA"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="WrapperdColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="Background" Value="#FFBDBDBA"/>
+            <Setter Property="BorderBrush" Value="#FF7A7A7A"/>
+            <!--<Setter Property="ClipToBounds" Value="True"/>-->
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="DataGrid_Cell_Center" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="49"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="74"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="pack://application:,,,/SETUP;component/Resources/motif.png"/>
+            </StackPanel.Background>
+            <Image Width="129" Source="pack://application:,,,/SETUP;component/Resources/h1_posco1.png" Height="26" Margin="5,0,0,0" />
+            <Image Source="pack://application:,,,/SETUP;component/Resources/logo.png" Margin="413,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        </StackPanel>
+        <TextBlock Grid.Row="1" Text="Material Information" VerticalAlignment="Center" Background="#F905507D" FontSize="14" Foreground="#FFFFFFFF" Height="21" Padding="0"/>
+        <Grid Grid.Row="3" Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="94"/>
+                <ColumnDefinition Width="38"/>
+                <ColumnDefinition Width="31"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="84"/>
+                <ColumnDefinition Width="38"/>
+                <ColumnDefinition Width="31"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="38"/>
+                <ColumnDefinition Width="31"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="73"/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Entry Thickness" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" x:Name="txtEntryThickness" x:FieldModifier="public" HorizontalAlignment="Center" TextWrapping="NoWrap" Margin="0,2,0,0" Width="38" Height="16" VerticalAlignment="Center" MaxLength="5" 
+                     HorizontalContentAlignment="Center" PreviewTextInput="txtEntryThickness_PreviewTextInput" 
+                     TextChanged="txtEntryThickness_TextChanged"/>
+            <TextBlock Grid.Column="2" Text="mm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="4" Text="Exit Thickness" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="5" x:Name="txtExitThickness"  HorizontalAlignment="Center" TextWrapping="NoWrap" Margin="0,2,0,0" Width="38" Height="16" VerticalAlignment="Center" MaxLength="5" HorizontalContentAlignment="Center" PreviewTextInput="txtExitThickness_PreviewTextInput"/>
+            <TextBlock Grid.Column="6" Text="mm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="8" Text="Width" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="9" x:Name="txtWidth"  HorizontalAlignment="Center" TextWrapping="NoWrap" Margin="0,2,0,0" Width="38" Height="16" VerticalAlignment="Center" MaxLength="4" HorizontalContentAlignment="Center" PreviewTextInput="txtWidth_PreviewTextInput"/>
+            <TextBlock Grid.Column="10" Text="mm" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="12" Text="Steel Grade" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="13" x:Name="cboSteel" SelectionChanged="cboSteel_SelectionChanged" HorizontalAlignment="Center" Margin="0,3,0,0" Width="80" Height="18" VerticalAlignment="Center" Padding="6,1,5,3" />
+        </Grid>
+        <Rectangle Grid.Row="4" Height="2" Fill="#dfdfdf" Margin="0,5,0,5"/>
+        <Grid Grid.Row="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="34"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Reduction Adjustment" VerticalAlignment="Center" Background="#FF05507D" FontSize="14" Foreground="#FFFFFFFF" Height="21"/>
+            <Button x:Name="btnCalc" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Content="Calculation" Margin="0,12,0,0" FontSize="14" Click="btnCalc_Click" />
+            <Grid Grid.Row="1" Grid.Column="0" Margin="0,2,0,2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="1" x:Name="chkAdjReduction" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="chkAdjReduction_Checked" Unchecked="chkAdjReduction_Unchecked" />
+                <Label Grid.Column="3" x:Name="lblR1max" Width="Auto" Content="R1max" />
+                <TextBox Grid.Column="4" x:Name="txtR1max" Width="30" Height="18" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Center" MaxLength="4" HorizontalContentAlignment="Center" PreviewTextInput="txtR1max_PreviewTextInput"/>
+                <ScrollBar Grid.Column="5" x:Name="scbR1max" Maximum="1000" Minimum="-1000" ValueChanged="scbR1max_ValueChanged" Background="#FFF0F0F0" BorderBrush="#FFF0F0F0"/>
+                <Label Grid.Column="6" x:Name="lblR1" Width="Auto" Content="%" />
+                <Label Grid.Column="8" x:Name="lblRmean" Width="Auto" Content="Rmean" />
+                <TextBox Grid.Column="9" x:Name="txtRmean" Width="30" Height="18" VerticalAlignment="Center" HorizontalAlignment="Center" MaxLength="4" HorizontalContentAlignment="Center" PreviewTextInput="txtRmean_PreviewTextInput"/>
+                <ScrollBar Grid.Column="10" x:Name="scbRmean" Maximum="1000" Minimum="-1000" ValueChanged="scbRmean_ValueChanged"/>
+                <Label Grid.Column="11" x:Name="lblRm" Width="Auto" Content="%" />
+            </Grid>
+        </Grid>
+        <Rectangle Grid.Row="6" Height="2" Fill="#dfdfdf"  Margin="0,5,0,5"/>
+        <TextBlock Grid.Row="7" Text="Pass Schedule" VerticalAlignment="Center" Background="#FF05507D" FontSize="14" Foreground="#FFFFFFFF" Height="21"/>
+        <DataGrid x:Name="dgPass" Grid.Row="8" AutoGenerateColumns="False" ColumnHeaderHeight="60" CanUserResizeColumns="False" Margin="0,5,0,0" 
+                  HorizontalGridLinesBrush="#FFBDBDBA" VerticalGridLinesBrush="#FFBDBDBA" HeadersVisibility="Column" 
+                  ColumnHeaderStyle="{Binding Mode=OneWay, Source={StaticResource WrapperdColumnHeaderStyle}}" 
+                  CellStyle="{StaticResource DataGrid_Cell_Center}"
+                  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled"
+                  ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=No}"  Header="Pass No" Width="40" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=Hen}"  Header="Entry Thickness (mm)" Width="65" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=Hex}"  Header="Exit Thickness (mm)" Width="65" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=Red}"  Header="Reduction (%)" Width="66" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=TRed}" Header="Total Reduction (%)" Width="66" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=Speed}" Header="Speed (mpm)" Width="55" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=Ten}"  Header="Entry Unit Tension (kg/mm2)" Width="66" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=Tex}" Header="Exit Unit Tension (kg/mm2)" Width="66" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=TTen}" Header="Entry Total Tension (Ton)" Width="72" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=TTex}"  Header="Exit Total Tension (Ton)" Width="72" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Path=RForce}" Header="Roll Force (Ton)" Width="66" CanUserSort="False" CanUserReorder="False" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
